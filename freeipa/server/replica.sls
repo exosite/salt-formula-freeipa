@@ -29,7 +29,7 @@ freeipa_server_install:
         --domain {{ server.domain }}
         --realm {{ server.realm }}
         --server {{ server.servers.0 }}
-        --hostname {{ grains['fqdn'] }}
+        --hostname {{ server.get('hostname', grains['fqdn']) }}
         {%- else %}
         --password {{ server.ldap.password }}
         /var/lib/ipa/replica-info-{{ server.get('hostname', grains['fqdn']) }}.gpg
